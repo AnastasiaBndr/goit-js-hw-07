@@ -28,21 +28,13 @@ gallery.innerHTML=markup.join("");
 
 gallery.addEventListener("click", onClick);
 
-   var lightbox=null;
+   let lightbox=null;
 function onClick(evt){
-    
-    if(!evt.target.classList.contains("gallery__image")){
-        return;
-    }
 
     if (lightbox !== null) {
         lightbox.parentNode.remove();
         lightbox = null;
       }
-
-    const imgName = evt.target.alt;
-    const currentItem = galleryItems.find(({description})=> imgName===description);
-
     
     lightbox = new SimpleLightbox('.gallery a',{
         captions: true,

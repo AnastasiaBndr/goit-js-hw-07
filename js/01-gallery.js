@@ -25,15 +25,11 @@ const markup=galleryItems.map(({original, preview,description})=>{
     return li.outerHTML;
 })
 
-gallery.innerHTML=markup.join("");
+gallery.insertAdjacentHTML("beforeend",markup.join(""));
 
 gallery.addEventListener("click", onClick);
 
 function onClick(evt){
-    
-    if(!evt.target.classList.contains("gallery__image")){
-        return;
-    }
 
     const imgName = evt.target.alt;
     const currentItem = galleryItems.find(({description})=> imgName===description);
@@ -42,14 +38,17 @@ function onClick(evt){
     <div>
       <img src="${currentItem.original}" width="1000" alt="${currentItem.description}" />
       <h2 class="text-item">${currentItem.description}</h2>
-    </div>`);
+    </div>`,{
+        onShow:()=>window.addEventListener("keydown", keyPress),
+        onClose: ()=>window.removeEventListener("keydown", keyPress)
+    });
 
     instance.show();
 
-    gallery.addEventListener("keydown", onPress);
-
-    function onPress(evt){
-        if(evt.isComming || evt.keyCode===27)
-            instance.close();
+    function keyPress(evtKey){
+        if(evtKey.key==="Escape")
+        instance.close();
     }
+
+   
 }
