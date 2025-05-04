@@ -17,6 +17,7 @@ const images = [
 const gallery = document.querySelector(".gallery");
 const goBack = document.querySelector('a');
 goBack.classList.add("task-go-back");
+let htmlString = "";
 for (const image of images) {
   const li = document.createElement("li");
   const img = document.createElement("img");
@@ -25,5 +26,8 @@ for (const image of images) {
 
   li.append(img);
 
-  gallery.append(li);
+  htmlString += li.outerHTML;
+
 }
+
+gallery.insertAdjacentHTML("afterbegin",htmlString);
