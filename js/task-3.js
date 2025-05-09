@@ -2,7 +2,6 @@ const input = document.querySelector('#name-input');
 const nameOutput = document.querySelector('#name-output');
 const nameOutputValue = "Anonymous";
 const handleInput = e => {
-    e.preventDefault();
     let text = input.value.trim();
     console.log(text);
     if (!text){
